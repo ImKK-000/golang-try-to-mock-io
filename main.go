@@ -6,26 +6,28 @@ import (
 )
 
 type ReadFile struct {
-	Reader func() (string, error)
+	Reader func() ([]byte, error)
 }
 
-func FakeIOReadFile() (string, error) {
-	return "hi kk!", nil
+func FakeIOReadFile() ([]byte, error) {
+	return []byte("hi kk!"), nil
 }
 
-func RealIOReadFile() (string, error) {
+func RealIOReadFile() ([]byte, error) {
 	rawBytes, err := ioutil.ReadFile("test-io")
-	return string(rawBytes), err
+	return rawBytes, err
 }
 
 func main() {
 	fakeReadFile := ReadFile{
 		Reader: FakeIOReadFile,
 	}
-	fmt.Println(fakeReadFile.Reader())
+	fakeRawBytes, _ := fakeReadFile.Reader()
+	fmt.Println(string(fakeRawBytes))
 
 	realReadFile := ReadFile{
 		Reader: RealIOReadFile,
 	}
-	fmt.Println(realReadFile.Reader())
+	realRawBytes, _ := realReadFile.Reader()
+	fmt.Println(string(realRawBytes))
 }
