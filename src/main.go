@@ -14,7 +14,7 @@ func FakeIOReadFile() ([]byte, error) {
 }
 
 func RealIOReadFile() ([]byte, error) {
-	rawBytes, err := ioutil.ReadFile("test-io")
+	rawBytes, err := ioutil.ReadFile("../test-io")
 	return rawBytes, err
 }
 
