@@ -6,6 +6,21 @@ import (
 	. "try-to-mock-io/readfile"
 )
 
+func Test_RealReader_Should_Be_Bytes_And_No_Error(t *testing.T) {
+	expectedBytesResult := []byte("hi kk!")
+	expectedErrorResult := error(nil)
+
+	actualBytesResult, actualErrorResult := RealReader()
+
+	if string(expectedBytesResult) != string(actualBytesResult) {
+		t.Errorf("expect '%s' but it got '%s'", string(expectedBytesResult), string(actualBytesResult))
+	}
+
+	if expectedErrorResult != actualErrorResult {
+		t.Errorf("expect '%v' but it got '%v'", expectedErrorResult, actualErrorResult)
+	}
+}
+
 func Test_ReadFile_Input_IO_Should_Be_Hi_Space_KK_Exclamation_Mark(t *testing.T) {
 	expectedResult := "hi kk!"
 	mockReadFile := model.ReadFile{
