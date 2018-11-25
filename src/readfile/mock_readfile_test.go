@@ -2,10 +2,10 @@ package readfile_test
 
 import "errors"
 
-func MockReaderSuccess() ([]byte, error) {
+func MockReaderSuccess(path string) ([]byte, error) {
 	return []byte("hi kk!"), nil
 }
 
-func MockReaderError() ([]byte, error) {
+func MockReaderError(path string) ([]byte, error) {
 	return nil, errors.New("Reader Error!")
 }

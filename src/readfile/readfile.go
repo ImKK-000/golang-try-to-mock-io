@@ -6,18 +6,18 @@ import (
 
 // ReadFile - struct for store io reader
 type ReadFile struct {
-	Reader func() ([]byte, error)
+	Reader func(string) ([]byte, error)
 }
 
 // RealReader - real reader for read file
-func RealReader() ([]byte, error) {
-	rawBytes, err := ioutil.ReadFile("../../test-io")
+func RealReader(path string) ([]byte, error) {
+	rawBytes, err := ioutil.ReadFile(path)
 	return rawBytes, err
 }
 
 // ReadFileString - main function for read file and return string
-func (readFile ReadFile) ReadFileString() string {
-	rawBytes, err := readFile.Reader()
+func (readFile ReadFile) ReadFileString(path string) string {
+	rawBytes, err := readFile.Reader(path)
 	if err != nil {
 		return err.Error()
 	}
