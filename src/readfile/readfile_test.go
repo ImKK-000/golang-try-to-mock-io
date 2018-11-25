@@ -17,3 +17,15 @@ func Test_ReadFile_Input_IO_Should_Be_Hi_Space_KK_Exclamation_Mark(t *testing.T)
 		t.Errorf("expect '%s' but it got '%s'", expectedResult, actualResult)
 	}
 }
+
+func Test_ReadFile_Input_IO_Should_Be_Empty_Message(t *testing.T) {
+	expectedResult := ""
+	mockReadFile := model.ReadFile{
+		Reader: MockReaderError,
+	}
+	actualResult := ReadFile(mockReadFile)
+
+	if expectedResult != actualResult {
+		t.Errorf("expect '%s' but it got '%s'", expectedResult, actualResult)
+	}
+}
