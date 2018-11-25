@@ -2,7 +2,6 @@ package readfile_test
 
 import (
 	"testing"
-	"try-to-mock-io/model"
 	. "try-to-mock-io/readfile"
 
 	"github.com/stretchr/testify/assert"
@@ -20,20 +19,20 @@ func Test_RealReader_Should_Be_Bytes_And_No_Error(t *testing.T) {
 
 func Test_ReadFile_Input_IO_Should_Be_Hi_Space_KK_Exclamation_Mark(t *testing.T) {
 	expectedResult := "hi kk!"
-	mockReadFile := model.ReadFile{
+	mockReadFile := ReadFile{
 		Reader: MockReaderSuccess,
 	}
-	actualResult := ReadFile(mockReadFile)
+	actualResult := ReadFileString(mockReadFile)
 
 	assert.Equal(t, expectedResult, actualResult)
 }
 
 func Test_ReadFile_Input_IO_Should_Be_Empty_Message(t *testing.T) {
 	expectedResult := ""
-	mockReadFile := model.ReadFile{
+	mockReadFile := ReadFile{
 		Reader: MockReaderError,
 	}
-	actualResult := ReadFile(mockReadFile)
+	actualResult := ReadFileString(mockReadFile)
 
 	assert.Equal(t, expectedResult, actualResult)
 }

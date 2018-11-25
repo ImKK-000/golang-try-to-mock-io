@@ -2,15 +2,18 @@ package readfile
 
 import (
 	"io/ioutil"
-	"try-to-mock-io/model"
 )
+
+type ReadFile struct {
+	Reader func() ([]byte, error)
+}
 
 func RealReader() ([]byte, error) {
 	rawBytes, err := ioutil.ReadFile("../../test-io")
 	return rawBytes, err
 }
 
-func ReadFile(readFile model.ReadFile) string {
+func ReadFileString(readFile ReadFile) string {
 	rawBytes, err := readFile.Reader()
 	if err != nil {
 		return ""
